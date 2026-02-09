@@ -7,3 +7,6 @@ defaults write com.apple.dock autohide -bool true; killall Dock
 # Disable 'Automatically rearrange Spaces based on most recent use'
 defaults write com.apple.dock mru-spaces -bool false; killall Dock
 
+# Languages & Region #
+# Set 'Preferred Languages'
+defaults write -g AppleLanguages -array "en" "ko"
