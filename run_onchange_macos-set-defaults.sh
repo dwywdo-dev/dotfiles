@@ -54,5 +54,10 @@ defaults write com.apple.finder NewWindowTarget -string "PfHm" # "Pf"inder + "Hm
 defaults write com.apple.finder AppleShowAllExtensions -bool true
 # View > Show Path Bar, Show Status Bar
 defaults write com.apple.finder ShowPathbar -bool true
-defaults write com.apple.finder ShowStatusBar -bool true; killall Finder
+defaults write com.apple.finder ShowStatusBar -bool true
+# Search in a current folder
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf" # "SC"ope + "cf"urrent + "F"older
+defaults write com.apple.finder FXPreferredGroupBy -string "Date Added"
+defaults write com.apple.finder FXDefaultSortOrder -string "Name"; killall Finder
+
 
