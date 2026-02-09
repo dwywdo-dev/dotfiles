@@ -12,7 +12,7 @@ defaults write com.apple.dock mru-spaces -bool false; killall Dock
 defaults write -g AppleLanguages -array "en" "ko"
 
 # Lock Screen #
-# Note: You need to manually set the message at 'Lock Screen > Show message when locked'
+echo "⚠️ You need to manually set the message at 'Lock Screen > Show message when locked'"
 # Always ask for password to unlock
 defaults write com.apple.screensaver askForPassword -int 1
 # Lock screen when idle for 1 minute, and apply it (after ;)
@@ -37,4 +37,22 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 # Function Keys #
 # Switch behavior of Function Keys to F1/F2/... as default
 defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+
+# Trackpad #
+# Enable 'Tap to click'
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+# Configure 'Use trackpad for dragging - Dragging style' as 'Three finger drag'
+defaults write com.apple.AppleMultitouchTrackpad Dragging -int 1
+
+# Keyboard shortcut #
+echo "⚠️ You need to uncheck 'Keyboard shortcut > Services > Text > 터미널에서 man 페이지 인덱스 검색'"
+
+# Finder Settings #
+# General > New Finder window show: Set as HOME
+defaults write com.apple.finder NewWindowTarget -string "PfHm" # "Pf"inder + "Hm"ome
+# Advanced > Show all filename extensions
+defaults write com.apple.finder AppleShowAllExtensions -bool true
+# View > Show Path Bar, Show Status Bar
+defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.finder ShowStatusBar -bool true; killall Finder
 
