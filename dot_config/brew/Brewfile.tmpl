@@ -1,0 +1,76 @@
+{{ if eq .env "work" -}}
+################
+#     WORK     #
+################
+
+tap "athenz/athenz-utils", "git@git.linecorp.com:athenz/homebrew-athenz-utils.git"
+tap "mylee04/tools"
+tap "vks/tap", "git@git.linecorp.com:vks/homebrew-tap.git"
+
+# athenz-utils
+brew "athenz/athenz-utils/athenz-utils"
+# Cross-platform desktop notifications for AI coding tools
+brew "mylee04/tools/code-notify"
+# Command-line tool to control VKS, the Verda Kubernetes Service
+brew "vks/tap/vksctl"
+
+{{- else if eq .env "personal" -}}
+################
+#   PERSONAL   #
+################
+
+# ???
+# brew "test"
+
+{{- end }}
+
+################
+#    COMMON    #
+################
+
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# Container runtimes on MacOS (and Linux) with minimal setup
+brew "colima", restart_service: :changed
+# Good-lookin' diffs with diff-highlight and more
+brew "diff-so-fancy"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Isolated development environments using Docker
+brew "docker-compose"
+# Modern, maintained replacement for ls
+brew "eza"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GitHub command-line tool
+brew "gh"
+# Kubernetes package manager
+brew "helm"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# FAST Kubernetes manifests validator, with support for Custom Resources!
+brew "kubeconform"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Template-free customization of Kubernetes YAML manifests
+brew "kustomize"
+# Java-based project management
+brew "maven"
+# Manage multiple Node.js versions
+brew "nvm"
+# Command-line client for OpenStack
+brew "openstackclient"
+# Terminal multiplexer
+brew "tmux"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
