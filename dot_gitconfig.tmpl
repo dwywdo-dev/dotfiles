@@ -1,0 +1,8 @@
+[user]
+	name = Euiyub Jung
+	email = {{ .email | quote }} 
+[core]
+	autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[interactive]
+	diffFilter = diff-so-fancy --patch
