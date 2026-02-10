@@ -20,7 +20,7 @@ echo "# 2. Mission Control"
 # Disable 'Automatically rearrange Spaces based on most recent use'
 defaults write com.apple.dock mru-spaces -bool false
 # Enable 'Group windows by application' to work with aerospace in a great manner
-defaults write com.apple.dock "expose-group-apps' -bool true; killall Dock 
+defaults write com.apple.dock "expose-group-apps" -bool true; killall Dock 
 
 echo "# 3. Languages & Region"
 # Set 'Preferred Languages'
