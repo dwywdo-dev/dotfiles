@@ -1,0 +1,86 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /Users/al02367034/Library/Application Support/com.mitchellh.ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+# font-family = Iosevka
+# window-padding-x = 2
+#
+# # Spacing around the equals sign does not matter.
+# # All of these are identical:
+# key=value
+# key= value
+# key =value
+# key = value
+#
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+#
+# # Some config options have unique syntaxes for their value,
+# # which is explained in the docs for that config option.
+# # Just for example:
+# resize-overlay-duration = 4s 200ms
+
+font-family = Google Sans Code
+font-family = Sarasa Term K
+# font-size = 16
+
+# theme = GitHub Light Default
+
+shell-integration-features = no-cursor,sudo,no-title
+cursor-style = block
+
+# Font and cell adjustments for Korean text
+# adjust-cell-height = 15%
+# adjust-cell-width = 0%
+# adjust-font-baseline = -2%
+# grapheme-width-method = unicode
+
+# Font variations for better Korean rendering
+font-synthetic-style = bold,italic,bold-italic
+
+# Hide the mouse immediately when typing. The mouse becomes visible again
+# may dictate other scenarios where the mouse is shown. For example on macOS,3
+# the mouse is shown again when a new window, tab, or split is created.
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+window-padding-balance = true
+window-save-state = always
+window-colorspace = "display-p3"
+window-decoration = false
+macos-titlebar-style = hidden
+# macos-titlebar-style=transparekt
+# background = 1C2021
+# foreground = d4be98
+
+# The opacity level (opposite of transparency) of the background. A value of
+# 1 is fully opaque and a value of 0 is fully transparent. A value less than 0
+# or greater than 1 will be clamped to the nearest valid value.
+background-opacity = 1
