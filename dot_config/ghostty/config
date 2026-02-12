@@ -52,7 +52,7 @@ font-family = Google Sans Code
 font-family = Sarasa Term K
 # font-size = 16
 
-# theme = GitHub Light Default
+theme = GitHub Light Default
 
 shell-integration-features = no-cursor,sudo,no-title
 cursor-style = block
