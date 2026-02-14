@@ -160,3 +160,8 @@ export NVM_DIR="$HOME/.nvm"
 # NVIM Kickstart Config
 alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 
+# Re-bindkey for fzf
+bindkey -r '^R' # Remove Ctrl + R for history fuzzy search
+bindkey -r '^T' # Remove Ctrl + T for file fuzzy search
+bindkey '^H' fzf-history-widget
+bindkey '^L' fzf-file-widget
