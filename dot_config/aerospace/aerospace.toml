@@ -224,7 +224,7 @@ on-mode-changed = []
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace C'
+run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
@@ -232,7 +232,7 @@ run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.dia'
-run = 'move-node-to-workspace D'
+run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
