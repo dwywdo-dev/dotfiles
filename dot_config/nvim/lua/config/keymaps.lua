@@ -249,4 +249,3 @@ vim.keymap.set({ "n", "i" }, "<M-l>", function()
   vim.api.nvim_win_set_cursor(0, { row, 6 })
 end, { desc = "Convert bullet to a task or insert new task bullet" })
 
-

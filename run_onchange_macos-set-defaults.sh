@@ -61,6 +61,7 @@ defaults write com.apple.AppleMultitouchTrackpad Dragging -int 1
 
 echo "# 8. Keyboard shortcut"
 echo "⚠️ You need to uncheck 'Keyboard shortcut > Services > Text > 터미널에서 man 페이지 인덱스 검색'"
+echo "⚠️ You need to disable '^ + ↑' and '^ + ↓' for Mission Control
 
 # Finder Settings
 # General > New Finder window show: Set as HOME
