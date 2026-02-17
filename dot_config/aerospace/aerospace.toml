@@ -143,7 +143,7 @@ on-mode-changed = []
     ctrl-9 = 'workspace 9'
     # In your config, you can drop workspace bindings that you don't need
     # ctrl-a = 'workspace A' # Used in tmux
-    ctrl-b = 'workspace B'
+    ctrl-b = 'workspace B' # For browsers (Chrome, Dia, ...)
     # ctrl-c = 'workspace C' # ...
     # ctrl-d = 'workspace D' # Tmux exit panel
     ctrl-e = 'workspace E'
@@ -157,7 +157,7 @@ on-mode-changed = []
     ctrl-q = 'workspace Q'
     ctrl-r = 'workspace R'
     ctrl-s = 'workspace S'
-    ctrl-t = 'workspace T'
+    ctrl-t = 'workspace T' # For terminals (Ghostty)
     ctrl-u = 'workspace U'
     # ctrl-v = 'workspace V' # Used for testing to send escape to Neovim from terminal (Example: Ctrl+V > Alt+X => <M-x>)
     ctrl-w = 'workspace W'
