@@ -25,7 +25,8 @@ if [ ! -f "$full_path" ]; then
   cat <<EOF >"$full_path"
 # ${note_name}
 
-## Daily Note
+## Daily Log
+
 
 EOF
 fi

@@ -155,8 +155,8 @@ on-mode-changed = []
     ctrl-o = 'workspace O'
     ctrl-p = 'workspace P'
     ctrl-q = 'workspace Q'
-    ctrl-r = 'workspace R'
-    ctrl-s = 'workspace S'
+    # ctrl-r = 'workspace R' # For tmux-resurrect restoration
+    # ctrl-s = 'workspace S' # For tmux-resurrect save
     ctrl-t = 'workspace T' # For terminals (Ghostty)
     ctrl-u = 'workspace U'
     # ctrl-v = 'workspace V' # Used for testing to send escape to Neovim from terminal (Example: Ctrl+V > Alt+X => <M-x>)
