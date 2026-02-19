@@ -24,7 +24,7 @@ vim.keymap.set("n", "<M-x>", function()
   local timestamp = os.date("%y%m%d-%H%M")
   -- local timestamp = os.date("%y%m%d")
   -- NOTE: Customize the heading and its level
-  local tasks_heading = "## Completed Tasks"
+  local tasks_heading = "#### Completed Tasks"
   -- Save the view to preserve folds
   vim.cmd("mkview")
   local api = vim.api
