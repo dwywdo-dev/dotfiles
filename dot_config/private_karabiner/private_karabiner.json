@@ -4,7 +4,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "sublayer_space + d: BTT Ghostty Ctrl+A 1 Sequence for Daily Note",
+                        "description": "sublayer_space + d: BTT Ghostty Ctrl+A 0 Sequence for Daily Note",
                         "manipulators": [
                             {
                                 "conditions": [
