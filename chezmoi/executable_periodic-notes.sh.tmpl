@@ -44,13 +44,32 @@ tags:
 ---
 # %TITLE%
 
-## Tasks
+## Tasks & Schedules
 
 
-## Daily Log
+## 작업 내역
 
 
-## Thoughts
+### Vault 문서 작업
+
+
+### Claude Code 작업
+
+
+### 미팅
+
+
+### Task 활동
+
+
+#### 완료된 Task
+
+
+#### 새로 추가된 Task
+
+
+### 학습 기록
+
 
 
 EOF
@@ -64,11 +83,38 @@ tags:
 ---
 # %TITLE%
 
-## Monthly Goals
-
-
-## Review
-
+## Task & Schedules
+### %MONTH%-01 
+### %MONTH%-02 
+### %MONTH%-03 
+### %MONTH%-04 
+### %MONTH%-05 
+### %MONTH%-06 
+### %MONTH%-07 
+### %MONTH%-08 
+### %MONTH%-09 
+### %MONTH%-10 
+### %MONTH%-11 
+### %MONTH%-12 
+### %MONTH%-13 
+### %MONTH%-14 
+### %MONTH%-15 
+### %MONTH%-16 
+### %MONTH%-17 
+### %MONTH%-18 
+### %MONTH%-19 
+### %MONTH%-20 
+### %MONTH%-21 
+### %MONTH%-22 
+### %MONTH%-23 
+### %MONTH%-24 
+### %MONTH%-25 
+### %MONTH%-26 
+### %MONTH%-27 
+### %MONTH%-28 
+### %MONTH%-29 
+### %MONTH%-30 
+### %MONTH%-31 
 
 EOF
       ;;
@@ -81,16 +127,26 @@ tags:
 ---
 # %TITLE%
 
-## Yearly Goals
-
-
-## Review
-
+## Task & Schedules 
+### %YEAR%-01
+### %YEAR%-02
+### %YEAR%-03
+### %YEAR%-04
+### %YEAR%-05
+### %YEAR%-06
+### %YEAR%-07
+### %YEAR%-08
+### %YEAR%-09
+### %YEAR%-10
+### %YEAR%-11
+### %YEAR%-12
 
 EOF
       ;;
     esac
     sed -i.bak "s|%TITLE%|$title|g" "$note_path"
+    sed -i.bak "s|%YEAR%|$current_year|g" "$note_path" 2>/dev/null || true
+    sed -i.bak "s|%MONTH%|$current_month_abbr|g" "$note_path" 2>/dev/null || true
     rm -f "$note_path.bak"
   fi
 }
