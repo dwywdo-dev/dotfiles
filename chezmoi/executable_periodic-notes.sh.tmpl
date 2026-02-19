@@ -91,6 +91,7 @@ EOF
       ;;
     esac
     sed -i.bak "s|%TITLE%|$title|g" "$note_path"
+    rm -f "$note_path.bak"
   fi
 }
 
