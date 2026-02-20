@@ -38,6 +38,63 @@ return {
         end,
         desc = "[P]Search for completed tasks",
       },
+      {
+        "<leader>tf",
+        function() require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({
+          prompt_title = "Fixed schedules",
+          search = "^\\s*- \\[<\\]",
+          search_dirs = { vim.fn.getcwd() },
+          use_regex = true,
+          initial_mode = "normal",
+          layout_config = { preview_width = 0.5 },
+          additional_args = function() return { "--no-ignore" } end,
+        }))
+        end,
+        desc = "[P]Search for fixed schedules",
+      },
+      {
+        "<leader>ti",
+        function() require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({
+          prompt_title = "Ideas",
+          search = "^\\s*- \\[i\\]",
+          search_dirs = { vim.fn.getcwd() },
+          use_regex = true,
+          initial_mode = "normal",
+          layout_config = { preview_width = 0.5 },
+          additional_args = function() return { "--no-ignore" } end,
+        }))
+        end,
+        desc = "[P]Search for Ideas",
+      },
+      {
+        "<leader>tm",
+        function() require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({
+          prompt_title = "Memos",
+          search = "^\\s*- \\[m\\]",
+          search_dirs = { vim.fn.getcwd() },
+          use_regex = true,
+          initial_mode = "normal",
+          layout_config = { preview_width = 0.5 },
+          additional_args = function() return { "--no-ignore" } end,
+        }))
+        end,
+        desc = "[P]Search for Memos",
+      },
+      {
+        "<leader>tq",
+        function() require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({
+          prompt_title = "Questions",
+          search = "^\\s*- \\[q\\]",
+          search_dirs = { vim.fn.getcwd() },
+          use_regex = true,
+          initial_mode = "normal",
+          layout_config = { preview_width = 0.5 },
+          additional_args = function() return { "--no-ignore" } end,
+        }))
+        end,
+        desc = "[P]Search for Questions",
+      },
+
       -- change some options
       opts = {
         defaults = {

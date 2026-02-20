@@ -69,12 +69,21 @@ return {
       },
       checked = {
         -- Replaces '[x]' of 'task_list_marker_checked'
-        icon = "   󰱒 ",
+        icon = " 󰱒 ",
         -- Highlight for the checked icon
         highlight = "RenderMarkdownChecked",
         -- Highlight for item associated with checked checkbox
         scope_highlight = nil,
       },
+      custom = {
+        scheduled = { raw = '[<]', rendered = ' 󱕻 ', highlight = 'RenderMarkdownChecked', scope_highlight = nil }, 
+        migrated = { raw = '[>]', rendered = ' 󰘄 ', highlight = 'DiagnosticInfo', scope_highlight = nil },
+        irrelevant = { raw = '[/]', rendered = ' 󰅗 ', highlight = 'DiagnosticError', scope_highlight = '@markup.strikethrough'},
+        starred = { raw = '[*]', rendered = ' 󰓎 ', highlight = 'DiagnosticWarn', scope_highlight = nil },
+        idea = { raw = '[i]', rendered = ' 󱩖 ', highlight = 'DiagnosticWarn', scope_highlight = nil },
+        curious = { raw = '[q]', rendered = ' 󰞋 ', highlight = 'DiagnosticWarn', scope_highlight = nil },
+        memo = { raw = '[m]', rendered = ' 󱗟 ', highlight = 'DiagnosticHint', scope_highlight = nil },
+      }
     },
     html = {
       -- Turn on / off all HTML rendering
