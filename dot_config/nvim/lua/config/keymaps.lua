@@ -249,3 +249,29 @@ vim.keymap.set({ "n", "i" }, "<M-l>", function()
   vim.api.nvim_win_set_cursor(0, { row, 6 })
 end, { desc = "Convert bullet to a task or insert new task bullet" })
 
+
+-------------------------------------------------------------------------------
+--                           Folding section
+-------------------------------------------------------------------------------
+
+vim.keymap.set("n", "<CR>", function()
+  local line_num = vim.fn.line(".")
+  local current_line = vim.fn.getline(line_num)
+  
+  if string.match(current_line, "^#+%s") then
+    local foldlevel = vim.fn.foldlevel(line_num)
+    if foldlevel == 0 then
+      vim.notify("No fold found", vim.log.levels.INFO)
+    else
+      vim.cmd("normal! za")
+      vim.cmd("normal! zz")
+    end
+  else
+    vim.cmd("normal! j")
+  end
+end, { desc = "[P]Toggle fold or Move to next line" })
+
+-------------------------------------------------------------------------------
+--                        End Folding section
+-------------------------------------------------------------------------------
+
