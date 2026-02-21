@@ -165,3 +165,53 @@ bindkey -r '^R' # Remove Ctrl + R for history fuzzy search
 bindkey -r '^T' # Remove Ctrl + T for file fuzzy search
 bindkey '^H' fzf-history-widget
 bindkey '^L' fzf-file-widget
+
+# Zsh Vi Mode
+# vi(vim) mode plugin for ZSH
+# https://github.com/jeffreytse/zsh-vi-mode
+# Insert mode to type and edit text
+# Normal mode to use vim commands
+# test {really} long (command) using a { lot } of symbols {page} and {abc} and other ones [find] () "test page" {'command 2'}
+if [ -f "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ]; then
+  source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+  # Following 4 lines modify the escape key to `kj`
+  ZVM_VI_ESCAPE_BINDKEY=kj
+  ZVM_VI_INSERT_ESCAPE_BINDKEY=$ZVM_VI_ESCAPE_BINDKEY
+  ZVM_VI_VISUAL_ESCAPE_BINDKEY=$ZVM_VI_ESCAPE_BINDKEY
+  ZVM_VI_OPPEND_ESCAPE_BINDKEY=$ZVM_VI_ESCAPE_BINDKEY
+
+  # Function to switch to the left tmux pane and maximize it
+  function tmux_left_pane() {
+    # This defines if the tmux pane created by neovim is on the right or
+    # bottom, make sure you also configure the neovi keymap to match
+    export TMUX_PANE_DIRECTION="right"
+    if [[ $TMUX_PANE_DIRECTION == "right" ]]; then
+      tmux select-pane -L # Move to the left (opposite of right)
+    elif [[ $TMUX_PANE_DIRECTION == "bottom" ]]; then
+      tmux select-pane -U # Move to the top (opposite of bottom)
+    fi
+    tmux resize-pane -Z
+    # zle reset-prompt # Refresh the prompt after switching panes
+  }
+
+  # Register the function as a ZLE widget
+  # zle -N tmux_left_pane
+  zvm_define_widget tmux_left_pane
+
+  function zvm_after_lazy_keybindings() {
+    # Remap to go to the beginning of the line
+    zvm_bindkey vicmd 'gh' beginning-of-line
+    # Remap to go to the end of the line
+    zvm_bindkey vicmd 'gl' end-of-line
+    # Moves me to my left pane in tmux and maximizes it
+    # Bind Alt-t to the tmux_left_pane function in normal and insert mode
+    # To know that alt-t is ^[t I used `/bin/cat -v` and then pressed alt-t
+    zvm_bindkey vicmd '^[t' tmux_left_pane
+    zvm_bindkey viins '^[t' tmux_left_pane
+    # I used ',' to switch to left pane and maximize it  before switching to alt-t
+    # zvm_bindkey vicmd ',' tmux_left_pane
+    # Move to the left tmux pane with escape on normal and insert mode
+    # zvm_bindkey vicmd '^[' tmux_left_pane
+    # zvm_bindkey viins '^[' tmux_left_pane
+  }
+fi

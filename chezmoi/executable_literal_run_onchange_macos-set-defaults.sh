@@ -34,6 +34,7 @@ defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver loginwindowIdle -int 1
 
 echo "# 5. Keyboard"
+echo "⚠️ You need to disable 'Use the Caps Lock key to switch to and from ABC'"
 # Disable 'Correct spelling automatically'
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Disable 'Capatalize words automatically'
