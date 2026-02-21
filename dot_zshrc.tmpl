@@ -160,12 +160,6 @@ export NVM_DIR="$HOME/.nvm"
 # NVIM Kickstart Config
 alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
 
-# Re-bindkey for fzf
-bindkey -r '^R' # Remove Ctrl + R for history fuzzy search
-bindkey -r '^T' # Remove Ctrl + T for file fuzzy search
-bindkey '^H' fzf-history-widget
-bindkey '^L' fzf-file-widget
-
 # Zsh Vi Mode
 # vi(vim) mode plugin for ZSH
 # https://github.com/jeffreytse/zsh-vi-mode
@@ -215,3 +209,10 @@ if [ -f "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.z
     # zvm_bindkey viins '^[' tmux_left_pane
   }
 fi
+
+# Re-bindkey for fzf. This configuration should be after Zsh Vi Mode for overriding
+bindkey -r '^R' # Remove Ctrl + R for history fuzzy search
+bindkey -r '^T' # Remove Ctrl + T for file fuzzy search
+bindkey '^H' fzf-history-widget
+bindkey '^L' fzf-file-widget
+
