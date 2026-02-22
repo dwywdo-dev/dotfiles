@@ -11,9 +11,9 @@ return {
         desc = "Find Plugin File",
       },
       {
-        "<leader>tc",
+        "<leader>td",
         function() require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({
-          prompt_title = "Completed Tasks",
+          prompt_title = "Completed (Done) Tasks",
           search = "^\\s*- \\[x\\] `done:",
           search_dirs = { vim.fn.getcwd() },
           use_regex = true,
@@ -22,7 +22,7 @@ return {
           additional_args = function() return { "--no-ignore" } end,
         }))
         end,
-        desc = "[P]Search Completed Tasks",
+        desc = "[P]Search Completed (Done) Tasks",
       }, 
       {
         "<leader>tt",
@@ -39,9 +39,9 @@ return {
         desc = "[P]Search for completed tasks",
       },
       {
-        "<leader>tf",
+        "<leader>ts",
         function() require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({
-          prompt_title = "Fixed schedules",
+          prompt_title = "Schedules",
           search = "^\\s*- \\[<\\]",
           search_dirs = { vim.fn.getcwd() },
           use_regex = true,
@@ -50,7 +50,7 @@ return {
           additional_args = function() return { "--no-ignore" } end,
         }))
         end,
-        desc = "[P]Search for fixed schedules",
+        desc = "[P]Search for Schedules",
       },
       {
         "<leader>ti",
@@ -67,10 +67,10 @@ return {
         desc = "[P]Search for Ideas",
       },
       {
-        "<leader>tm",
+        "<leader>ti",
         function() require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({
-          prompt_title = "Memos",
-          search = "^\\s*- \\[m\\]",
+          prompt_title = "Ideas",
+          search = "^\\s*- \\[i\\]",
           search_dirs = { vim.fn.getcwd() },
           use_regex = true,
           initial_mode = "normal",
@@ -78,7 +78,7 @@ return {
           additional_args = function() return { "--no-ignore" } end,
         }))
         end,
-        desc = "[P]Search for Memos",
+        desc = "[P]Search for Ideas",
       },
       {
         "<leader>tq",
@@ -93,6 +93,20 @@ return {
         }))
         end,
         desc = "[P]Search for Questions",
+      },
+      {
+        "<leader>tb",
+        function() require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({
+          prompt_title = "Backlog",
+          search = "^\\s*- \\[b\\]",
+          search_dirs = { vim.fn.getcwd() },
+          use_regex = true,
+          initial_mode = "normal",
+          layout_config = { preview_width = 0.5 },
+          additional_args = function() return { "--no-ignore" } end,
+        }))
+        end,
+        desc = "[P]Search for Backlog Items",
       },
 
       -- change some options

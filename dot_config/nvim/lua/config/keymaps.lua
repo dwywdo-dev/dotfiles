@@ -9,7 +9,7 @@ local M = {}
 -------------------------------------------------------------------------------
 
 -- Dummy keymapping for testing
--- vim.keymap.set("n", "<M-x>", function() print("works!") end)
+-- vim.keymap.set({ "n", "i" }, "<M-x>", function() print("works!") end)
 
 -- HACK: Manage Markdown tasks in Neovim similar to Obsidian | Telescope to List Completed and Pending Tasks
 -- https://youtu.be/59hvZl077hM
@@ -217,45 +217,116 @@ vim.keymap.set("n", "<M-x>", function()
 end, { desc = "[P]Toggle task and move it to 'done'" })
 
 -------------------------------------------------------------------------------
+--                   Set current task checkbox to be cancelled ([c])
+-------------------------------------------------------------------------------
+
+vim.keymap.set({ "n", "i" }, "<M-c>", function()
+  local line = vim.api.nvim_get_current_line()
+  local prefix, rest = line:match("^(%s*[-*]%s+)%[[^%]]*%](.*)$")
+
+  if not prefix then
+    vim.notify("Not a task checkbox line: no action taken.", vim.log.levels.INFO)
+    return
+  end
+
+  local updated = prefix .. "[c]" .. rest
+  if updated == line then
+    return
+  end
+
+  vim.api.nvim_set_current_line(updated)
+end, { desc = "Set task checkbox to be cancelled ([c])" })
+
+-------------------------------------------------------------------------------
 --                          Add a checkbox (- [ ])
 -------------------------------------------------------------------------------
 
 vim.keymap.set({ "n", "i" }, "<M-l>", function()
-  -- Get the current line/row/column
+  local box_options = {
+    { key = " ", box = "[ ]", desc = "Task" },
+    { key = "<", box = "[<]", desc = "Scheduled" },
+    { key = ">", box = "[>]", desc = "Migrated" },
+    { key = "*", box = "[*]", desc = "Starred" },
+    { key = "i", box = "[i]", desc = "Idea" },
+    { key = "q", box = "[q]", desc = "Questionable" },
+    { key = "b", box = "[b]", desc = "Backlog" },
+    { key = "g", box = "[g]", desc = "Good" },
+    { key = "n", box = "[n]", desc = "No Good" },
+  }
+
+  local box_by_key = {}
+  for _, opt in ipairs(box_options) do
+    box_by_key[opt.key] = opt.box
+  end
+
+  local function key_label(key)
+    if key == " " then
+      return "<Space>"
+    end
+    return key
+  end
+
+  local function get_box()
+    local lines = { "M-l options (key : meaning):" }
+    for _, opt in ipairs(box_options) do
+      lines[#lines + 1] = string.format("%-8s: %s", key_label(opt.key), opt.desc)
+    end
+    lines[#lines + 1] = "others  : Task"
+    vim.notify(table.concat(lines, "\n"), vim.log.levels.INFO, { title = "Checkbox Type" })
+
+    -- M-l 이후 한 글자를 더 입력받아 체크박스 형태 결정
+    local ok, key = pcall(vim.fn.getcharstr)
+    if not ok or key == nil or key == "" then
+      return "[ ]"
+    end
+
+    return box_by_key[key] or "[ ]"
+  end
+
+  local box = get_box()
+  local prefix = "- " .. box .. " " -- 예: "- [ ] " 또는 "- [i] "
+
+  -- 현재 커서/라인
   local cursor_pos = vim.api.nvim_win_get_cursor(0)
-  local row, _ = cursor_pos[1], cursor_pos[2]
+  local row = cursor_pos[1]
   local line = vim.api.nvim_get_current_line()
-  -- 1) If line is empty => replace it with "- [ ] " and set cursor after the brackets
+
+  -- 1) 빈 줄이면 새 체크박스 항목 생성
   if line:match("^%s*$") then
-    local final_line = "- [ ] "
-    vim.api.nvim_set_current_line(final_line)
-    -- "- [ ] " is 6 characters, so cursor col = 6 places you *after* that space
-    vim.api.nvim_win_set_cursor(0, { row, 6 })
+    vim.api.nvim_set_current_line(prefix)
+    vim.api.nvim_win_set_cursor(0, { row, #prefix })
     return
   end
-  -- 2) Check if line already has a bullet with possible indentation: e.g. "  - Something"
-  --    We'll capture "  -" (including trailing spaces) as `bullet` plus the rest as `text`.
+
+  -- 2) 이미 체크박스가 있으면:
+  --    - 같은 타입이면 아무것도 하지 않음
+  --    - 다른 타입이면 체크박스만 교체
+  local cb_bullet, cb_value, cb_rest = line:match("^([%s]*[-*]%s+)%[([^%]]*)%]%s*(.*)$")
+  if cb_bullet then
+    local current_box = "[" .. cb_value .. "]"
+    if current_box == box then
+      return
+    end
+    local final_line = cb_bullet .. box .. " " .. cb_rest
+    vim.api.nvim_set_current_line(final_line)
+    vim.api.nvim_win_set_cursor(0, { row, #cb_bullet + #box + 1 })
+    return
+  end
+
+  -- 3) 기존 bullet(-/*)가 있으면 체크박스로 변환
   local bullet, text = line:match("^([%s]*[-*]%s+)(.*)$")
   if bullet then
-    -- Convert bullet => bullet .. "[ ] " .. text
-    local final_line = bullet .. "[ ] " .. text
+    local final_line = bullet .. box .. " " .. text
     vim.api.nvim_set_current_line(final_line)
-    -- Place the cursor right after "[ ] "
-    -- bullet length + "[ ] " is bullet_len + 4 characters,
-    -- but bullet has trailing spaces, so #bullet includes those.
-    local bullet_len = #bullet
-    -- We want to land after the brackets (four characters: `[ ] `),
-    -- so col = bullet_len + 4 (0-based).
-    vim.api.nvim_win_set_cursor(0, { row, bullet_len + 4 })
+    vim.api.nvim_win_set_cursor(0, { row, #bullet + #box + 1 })
     return
   end
-  -- 3) If there's text, but no bullet => prepend "- [ ] "
-  --    and place cursor after the brackets
-  local final_line = "- [ ] " .. line
+
+  -- 4) 일반 텍스트면 앞에 체크박스 bullet 추가
+  local final_line = prefix .. line
   vim.api.nvim_set_current_line(final_line)
-  -- "- [ ] " is 6 characters
-  vim.api.nvim_win_set_cursor(0, { row, 6 })
-end, { desc = "Convert bullet to a task or insert new task bullet" })
+  vim.api.nvim_win_set_cursor(0, { row, #prefix })
+end, { desc = "Insert task bullet (M-l then l/i/...)" })
 
 -------------------------------------------------------------------------------
 --                           Folding section

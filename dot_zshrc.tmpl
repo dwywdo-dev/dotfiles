@@ -210,9 +210,14 @@ if [ -f "$(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.z
   }
 fi
 
-# Re-bindkey for fzf. This configuration should be after Zsh Vi Mode for overriding
-bindkey -r '^R' # Remove Ctrl + R for history fuzzy search
-bindkey -r '^T' # Remove Ctrl + T for file fuzzy search
-bindkey '^H' fzf-history-widget
-bindkey '^L' fzf-file-widget
-
+# Re-bind fzf for both insert-mode(viins) and emacs keymaps.
+bindkey -M viins -r '^R' # Remove Ctrl + R for history fuzzy search
+bindkey -M viins -r '^T' # Remove Ctrl + T for file fuzzy search
+bindkey -M viins '^H' fzf-history-widget
+bindkey -M viins '^K' fzf-file-widget
+bindkey -M emacs -r '^R'
+bindkey -M emacs -r '^T'
+bindkey -M emacs '^H' fzf-history-widget
+bindkey -M emacs '^K' fzf-file-widget
+bindkey -M vicmd '^H' fzf-history-widget
+bindkey -M vicmd '^K' fzf-file-widget
