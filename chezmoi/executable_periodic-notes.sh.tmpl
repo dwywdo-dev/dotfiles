@@ -43,8 +43,7 @@ create_note_if_not_exists() {
         cat << 'EOT' > "$note_path"
 ---
 tags:
-  - daily
-  - periodic-note
+  - bujo/log/daily
 ---
 # %TITLE%
 
@@ -72,42 +71,71 @@ EOT
         cat << 'EOT' > "$note_path"
 ---
 tags:
-  - monthly
-  - periodic-note
+  - bujo/log/monthly
 ---
 # %TITLE%
 What will you do focus over this month?
 
 ## %MONTH%-01
+
 ## %MONTH%-02
+
 ## %MONTH%-03
+
 ## %MONTH%-04
+
 ## %MONTH%-05
+
 ## %MONTH%-06
+
 ## %MONTH%-07
+
 ## %MONTH%-08
+
 ## %MONTH%-09
+
 ## %MONTH%-10
+
 ## %MONTH%-11
+
 ## %MONTH%-12
+
 ## %MONTH%-13
+
 ## %MONTH%-14
+
 ## %MONTH%-15
+
 ## %MONTH%-16
+
 ## %MONTH%-17
+
 ## %MONTH%-18
+
 ## %MONTH%-19
+
 ## %MONTH%-20
+
 ## %MONTH%-21
+
 ## %MONTH%-22
+
 ## %MONTH%-23
+
 ## %MONTH%-24
+
 ## %MONTH%-25
+
 ## %MONTH%-26
+
 ## %MONTH%-27
+
 ## %MONTH%-28
+
 ## %MONTH%-29
+
 ## %MONTH%-30
+
 ## %MONTH%-31
 
 EOT
@@ -116,14 +144,15 @@ EOT
         cat << 'EOT' > "$note_path"
 ---
 tags:
-  - yearly
-  - log
+  - bujo/log/yearly
 ---
 
 # %TITLE%
 
 ## %Q_MONTH_1%
+
 ## %Q_MONTH_2%
+
 ## %Q_MONTH_3%
 
 EOT
