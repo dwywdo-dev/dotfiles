@@ -5,6 +5,8 @@
 # env = "work" # OR "personal"
 # codex = "your.codex.api.key"
 # vault = "your.path.to.obsidian.vault"
+# jira_access_token_line_auth_scripts = "your.jira.access.token"
+# wiki_access_token_line_auth_scripts = "your.wiki.access.token"
 
 [diff]
 pager = "diff-so-fancy"
