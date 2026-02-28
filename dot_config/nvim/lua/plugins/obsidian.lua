@@ -73,9 +73,14 @@ return {
     mappings = {},
     workspaces = {
       {
-        name = "main",
+        name = "dwywdo-dev",
         path = "~/dwywdo-dev/repositories/dwywdo_vault",
       },
+      {
+        name = "lp12495",
+        path = "~/lp12495/repositories/lp12495_vault",
+      },
+
     },
     ui = { enable = false },
     templates = {
