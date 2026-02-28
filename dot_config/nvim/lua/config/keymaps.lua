@@ -5,6 +5,28 @@
 local M = {}
 
 -------------------------------------------------------------------------------
+--                         Bujo Log Quick Input
+-------------------------------------------------------------------------------
+
+vim.keymap.set("n", "<leader>ol", function()
+  vim.ui.input({ prompt = "BujoLog (YYYY-MM-DD | YYYY-MM | YYYY, empty=today): " }, function(input)
+    if input == nil then
+      return
+    end
+
+    local arg = vim.trim(input)
+    if arg == "" then
+      vim.cmd("BujoLog")
+    else
+      vim.cmd({ cmd = "BujoLog", args = { arg } })
+    end
+  end)
+end, { desc = "Create Bujo log" })
+
+vim.keymap.set("n", "<leader>o[", "<cmd>BujoLogPrev<CR>", { desc = "Open previous Bujo log" })
+vim.keymap.set("n", "<leader>o]", "<cmd>BujoLogNext<CR>", { desc = "Open next Bujo log" })
+
+-------------------------------------------------------------------------------
 --       Toggle Checkbox and Move to #### Completed tasks at the bottom 
 -------------------------------------------------------------------------------
 
@@ -428,3 +450,4 @@ end
 vim.keymap.set({ "n", "v", "i" }, "<M-t>", function()
   M.tmux_pane_function()
 end, { desc = "[P]Terminal on tmux pane" })
+
