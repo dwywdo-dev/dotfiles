@@ -267,9 +267,28 @@ return {
       local arg = vim.trim(data.args or "")
 
       if arg == "" then
-        local y = os.date("%Y")
-        local d = os.date("%Y-%m-%d")
-        create_if_missing(("000_Periodics/%s/Daily/%s.md"):format(y, d), "log-daily.md")
+        local client = obsidian.get_client()
+        local vault_root = tostring(client:vault_root())
+
+        local y     = os.date("%Y")
+        local d     = os.date("%Y-%m-%d")
+        local m_str = os.date("%Y-%m")
+        local m     = tonumber(os.date("%m"))
+        local q     = math.ceil(m / 3)
+
+        local daily_rel   = ("000_Periodics/%s/Daily/%s.md"):format(y, d)
+        local monthly_rel = ("000_Periodics/%s/Monthly/%s.md"):format(y, m_str)
+        local yearly_rel  = ("000_Periodics/%s/Yearly/%s-%dQ.md"):format(y, y, q)
+
+        create_if_missing(daily_rel,   "log-daily.md",   false, false)
+        create_if_missing(monthly_rel, "log-monthly.md", false, false,
+          { monthly_year = tonumber(y), monthly_month = m })
+        create_if_missing(yearly_rel,  "log-yearly.md",  false, false,
+          { yearly_year = tonumber(y), yearly_quarter = q })
+
+        vim.cmd("badd " .. vim.fn.fnameescape(vim.fs.joinpath(vault_root, monthly_rel)))
+        vim.cmd("badd " .. vim.fn.fnameescape(vim.fs.joinpath(vault_root, yearly_rel)))
+        vim.cmd("edit " .. vim.fn.fnameescape(vim.fs.joinpath(vault_root, daily_rel)))
         return
       end
 
