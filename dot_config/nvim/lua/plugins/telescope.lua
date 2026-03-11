@@ -3,6 +3,15 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    -- change some options
+    opts = {
+      defaults = require("telescope.themes").get_ivy({
+        layout_config = { preview_width = 0.5 },
+        sorting_strategy = "ascending",
+        windblend = 0,
+        initial_mode = "normal",
+      }),
+    },
     keys = {
       -- add a keymap to browse plugin files
       -- stylua: ignore
@@ -108,16 +117,6 @@ return {
         }))
         end,
         desc = "[P]Search for Backlog Items",
-      },
-
-      -- change some options
-      opts = {
-        defaults = {
-          layout_strategy = "horizontal",
-          layout_config = { prompt_position = "top" },
-          sorting_strategy = "ascending",
-          winblend = 0,
-        },
       },
     },
   }
